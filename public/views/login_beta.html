@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Connect-Connect</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body ng-controller="LoginCtrl">
+  <form class="sign-up">
+  <div class="title-hold">
+    <h1 class="sign-up-title">Hullabaloo</h1>
+    <h1 class="sign-up-title">Connect-Connect</h1>
+  </div>
+    <input ng-model="roomname" type="text" class="sign-up-input" placeholder="What's your room number?" autofocus>
+    <input ng-model="username" type="password" class="sign-up-input" placeholder="What's your username?">
+    <button ng-disabled="username.length == 0 || roomname.length == 0" ng-click="joinRoom()" type="submit" class="sign-up-button">WOOP!</button>
+  </form>
+
+
+</body>
+</html>

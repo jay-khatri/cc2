@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Connect-Connect</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheets/style-index.css">
+</head>
+
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+<script src="controllers/LoginCtrl.js"></script>
+<script src="controllers/RoomCtrl.js"></script>
+<script src="appService.js"></script>
+
+<script>
+    var app = angular.module("app", ['ngRoute']);
+    app.config(function($routeProvider) {
+        $routeProvider
+                .when("/", {
+                    templateUrl: "views/login_beta.html",
+                    controller: "LoginCtrl"
+                })
+                .when("/room", {
+                    templateUrl: "views/room.html",
+                    controller: "RoomCtrl"
+                })
+    });
+    app.controller('LoginCtrl', LoginCtrl);
+    app.controller('RoomCtrl', RoomCtrl);
+
+    app.factory('appService', appService);
+
+</script>
+
+<body>
+<div id="header">
+    <p>
+        Welcome to Hullabaloo Connect-Connect!
+    </p>
+</div>
+
+<div class="main" style="height: 100%" ng-view></div>
+
+</body>
+</html>

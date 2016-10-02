@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body ng-controller="LoginCtrl">
+<div id="login">
+    Username: <input type="text" ng-model="username"><br>
+    Room Name: <input type="text" ng-model="roomname"><br>
+
+    <button ng-disabled="username.length == 0 || roomname.length == 0"
+        ng-click="joinRoom()">Join</button><br>
+
+    <!--<button ng-disabled="username.length == 0 || roomname.length > 0"-->
+        <!--ng-click="createRoom()">Create new room</button>-->
+</div>
+</body>
+</html>

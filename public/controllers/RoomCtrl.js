@@ -2,7 +2,7 @@
  * Created by Alex on 10/1/2016.
  */
 
-function RoomCtrl($scope, appService){
+function RoomCtrl($scope, appService, $http){
 
     var socket;
 
@@ -10,6 +10,13 @@ function RoomCtrl($scope, appService){
     $scope.username = appService.username;
     $scope.message = '';
     $scope.messages = [];
+
+    $scope.addMessage = function(){
+        user = appService.username;
+        msg = $scope.message;
+        socket.emit('chat message', $scope.message, appService.roomname, appService.username);
+        $scope.message = '';
+    };
 
     $scope.initialize = function(){
 
@@ -29,18 +36,28 @@ function RoomCtrl($scope, appService){
         console.log(socket);
         socket.on('chat message', function(msg){
             console.log(msg);
-            $scope.messages.push(msg);
+            // $scope.messages.push(msg);
+            $scope.messages.push({Name: user, Message: msg});
             console.log($scope.messages);
             $scope.$apply();
         });
         socket.on('path', function(msg){
             recieveDraw(msg);
         });
+        // $http.get('/api/canvas/'+appService.roomname)
+        //     .then(
+        //         function(res){
+        //             console.log(res);
+        //         },
+        //         function(err){
+        //             console.log(err);
+        //         }
+        //     );
     };
 
     $scope.sendMessage = function(){
         console.log('send message');
-        socket.emit('chat message', appService.username + ': ' + $scope.message);
+        socket.emit('chat message', $scope.message, appService.roomname, appService.username);
         $scope.message = '';
     };
 
@@ -77,7 +94,7 @@ function RoomCtrl($scope, appService){
         ctx.lineWidth = lineWidth;
         ctx.stroke();
         ctx.closePath();
-        socket.emit("path", {px: prevX, py: prevY, cx: currX, cy: currY, color: color});
+        socket.emit("path", {px: prevX, py: prevY, cx: currX, cy: currY, color: color}, appService.roomname);
     }
 
     function recieveDraw(path) {

@@ -85,7 +85,7 @@ for(var i = 0; i < 10; i++){
                         console.log("Added item:", JSON.stringify(data, null, 2));
                     }
                 });
-                nsp.emit('chat message',msg);
+                nsp.emit('chat message',msg,user);
             });
 
             socket.on('path', function(msg, room){

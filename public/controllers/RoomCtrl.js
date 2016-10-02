@@ -34,7 +34,7 @@ function RoomCtrl($scope, appService, $http){
         socket = io('/'+$scope.roomname);
         // socket = io();
         console.log(socket);
-        socket.on('chat message', function(msg){
+        socket.on('chat message', function(msg, user){
             console.log(msg);
             // $scope.messages.push(msg);
             $scope.messages.push({Name: user, Message: msg});

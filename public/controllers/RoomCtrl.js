@@ -40,7 +40,7 @@ function RoomCtrl($scope, appService){
 
     $scope.sendMessage = function(){
         console.log('send message');
-        socket.emit('chat message', $scope.message);
+        socket.emit('chat message', appService.username + ': ' + $scope.message);
         $scope.message = '';
     };
 

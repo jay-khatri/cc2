@@ -27,7 +27,7 @@ for(var i = 0; i < 10; i++){
                 console.log(msg);
                 dynamodb.putItem({
                     "TableName": table,
-                    "Message": msg
+                    "Item": msg
                 }, function(err, data){
 
                 });
@@ -41,18 +41,6 @@ for(var i = 0; i < 10; i++){
         });
     })()
 }
-
-// dynamodb.putItem({
-//     "TableName": table,
-//     "Item": item
-// },function(err, data)
-// {
-//     if(err) {
-//         socket.emit(item, "error");
-//     }else{
-//         socket.emit(item, data);
-//     }
-// });
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
